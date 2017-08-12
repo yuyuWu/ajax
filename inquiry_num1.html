@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <title>乙烯数据查询</title>
+    <script src="js/jquery-2.2.1.min.js"></script>
+    <script src="css/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/base.css"/>
+    <link rel="stylesheet" href="css/inquiry.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <!--左边栏-->
+        <div class="col-sm-1">
+            <div class="row">
+                <div class="col-sm-12">
+      <span class="title">
+           Ethylene
+          </span>
+                    <ul class="row">
+                        <li class="col-sm-12 nav-items"><a href="#">
+              <span class="img">
+                   <img src="images/icon_temp.png" alt=""/>
+              </span>
+                <span class="nav-words">
+                    温度数据图表
+                </span>
+                        </a>
+                        </li>
+                        <li class="col-sm-12 nav-items"><a href="#">
+                   <span class="img">
+                <img src="images/icon_inquiry.png" alt=""/>
+                </span>
+                <span class="nav-words">
+                    数据查询
+                </span>
+                        </a>
+                        </li>
+                        <li class="col-sm-12 nav-items  nav-items-active"><a href="#">
+                <span class="img">
+                <img src="images/icon_compare.png" alt=""/>
+                </span>
+                <span class="nav-words">
+                    管管比较
+                </span>
+                        </a>
+                        </li>
+                        <li class="col-sm-12 nav-items"><a href="#">
+                <span class="img">
+                <img src="images/icon_diagnosis.png" alt=""/>
+                </span>
+                <span class="nav-words">
+                    结焦诊断
+                </span>
+                        </a>
+                        </li>
+                        <li class="col-sm-12 nav-items"><a href="#">
+                 <span class="img">
+                <img src="images/icon_user.png" alt=""/>
+                </span>
+                <span class="nav-words">
+                    用户管理
+                </span>
+                        </a>
+                        </li>
+                        <li class="col-sm-12 nav-items"><a href="#">
+                 <span class="img">
+                <img src="images/icon_cancel.png" alt=""/>
+                </span>
+                <span class="nav-words">
+                  退出登录
+                </span>
+                        </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--右边栏-->
+        <div class="col-sm-11">
+            <!--数据查询头部-->
+            <!--时间输入-->
+            <div class="row">
+                <div class="col-sm-12 time">
+                    <div class="tube_time">
+                        <!--炉号-->
+                        <p>
+                            <span class="select_title"> 炉号:</span>
+                            <select class="cs-select cs-skin-elastic">
+                                <option value=1>H110</option>
+                                <option value=2>H111</option>
+                                <option value=3>H112</option>
+                                <option value=4>H113</option>
+                                <option value=5>H114</option>
+                                <option value=1>H115</option>
+                                <option value=2>H116</option>
+                                <option value=3>H117</option>
+                                <option value=4>H118</option>
+                                <option value=5>H119</option>
+                                <option value=5>H120</option>
+
+                            </select>
+                        </p>
+                        <!--时间起止-->
+                        <!-- <form action=""  class="date">
+                             <label for="" style="color: #666666!important;">
+                                <span>
+                                    从时间：
+                                </span>
+                                 <input type="text" value=""><span>
+                                 年
+                             </span>
+                                  <input type="text" value="">
+                                 <span>
+                                     月
+                                 </span>
+                                  <input type="text" value="">
+                                 <span>
+                                     日
+                                 </span>
+
+
+                             </label>
+                                <label for="">
+                                <span>
+                                     到时间：
+                                </span>
+                                 <input type="text" value="">
+                                    <span>
+                                        年
+                                    </span>
+                                  <input type="text" value="">
+                                    <span>
+                                        月
+                                    </span>
+                                  <input type="text" value="">
+                                    <span>
+                                        日
+                                    </span>
+                             </label>
+                             <p class="inquiryButton">
+                             <i  class="icon_bg">
+                                 <img src="images/icon_inquiry.png" alt=""  />
+                             </i>
+                                 <input type="button" value="查询" class="btn-inquiry"/>
+                             </p>
+
+                         </form>
+                 -->
+                        <form action="" id="ajaxFrm" class="date">
+                            <input type="text" value="" id="start_time"/>
+                            <input type="text" value="" id="end_time"/>
+                            <input type="button" id="btn1" value=" 查询">
+
+
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+            <div>
+
+            </div>
+            <!--炉管历史温度选项卡-->
+            <div class="row">
+                <div class="tab-content row col-sm-12 ">
+                    <ul class="tab_tube nav nav-tabs ">
+                        <li class="active">
+                            <a href="#tab1" data-toggle="tab">第1组</a>
+                        </li>
+                        <li>
+                            <a href="#tab2" data-toggle="tab">第2组</a>
+                        </li>
+                        <li>
+                            <a href="#tab3" data-toggle="tab">第3组</a>
+                        </li>
+                        <li>
+                            <a href="#tab4" data-toggle="tab">第4组</a>
+                        </li>
+                    </ul>
+                    <!-- 第一组炉管历史温度的12根管-->
+                    <div class="tab-pane row col-sm-12 active tab_items" id="tab1">
+
+                        <div class="table_all row col-sm-12" style="overflow-y: auto!important;overflow-x: auto">
+                            <ul class="heat_num">
+                                <li><a href="">
+                                      <span class="tub_num" style="float: left">
+                    1号管
+                </span>
+
+
+                                    <ul class="table_th">
+                                        <li class="table_in_time1 border_left boder_bottom">入管时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right"> 入管温度</li>
+                                        <li class="table_in_time1 boder_bottom"> 出管时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right"> 出管温度</li>
+                                        <li class="table_in_time1 boder_bottom">COT时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right">COT温度</li>
+                                    </ul>
+                                </a></li>
+                                <li><a href="">
+                                      <span class="tub_num">
+                    2号管
+                </span>
+
+
+                                    <ul class="table_th">
+                                        <li class="table_in_time1 border_left boder_bottom">入管时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right"> 入管温度</li>
+                                        <li class="table_in_time1 boder_bottom"> 出管时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right"> 出管温度</li>
+                                        <li class="table_in_time1 boder_bottom">COT时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right">COT温度</li>
+                                    </ul>
+                                </a></li>
+                                <li><a href="">
+                                      <span class="tub_num" style="float: left">
+                    3号管
+                </span>
+
+
+                                    <ul class="table_th">
+                                        <li class="table_in_time1 border_left boder_bottom">入管时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right"> 入管温度</li>
+                                        <li class="table_in_time1 boder_bottom"> 出管时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right"> 出管温度</li>
+                                        <li class="table_in_time1 boder_bottom">COT时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right">COT温度</li>
+                                    </ul>
+                                </a></li>
+                                <li><a href="">
+                                      <span class="tub_num">
+                    4号管
+                </span>
+
+
+                                    <ul class="table_th">
+                                        <li class="table_in_time1 border_left boder_bottom">入管时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right"> 入管温度</li>
+                                        <li class="table_in_time1 boder_bottom"> 出管时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right"> 出管温度</li>
+                                        <li class="table_in_time1 boder_bottom">COT时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right">COT温度</li>
+                                    </ul>
+                                </a></li>
+                                <li><a href="">
+                                      <span class="tub_num">
+                    5号管
+                </span>
+
+
+                                    <ul class="table_th">
+                                        <li class="table_in_time1 border_left boder_bottom">入管时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right"> 入管温度</li>
+                                        <li class="table_in_time1 boder_bottom"> 出管时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right"> 出管温度</li>
+                                        <li class="table_in_time1 boder_bottom">COT时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right">COT温度</li>
+                                    </ul>
+                                </a></li>
+                                <li><a href="">
+                                      <span class="tub_num">
+                    6号管
+                </span>
+
+
+                                    <ul class="table_th">
+                                        <li class="table_in_time1 border_left boder_bottom">入管时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right"> 入管温度</li>
+                                        <li class="table_in_time1 boder_bottom"> 出管时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right"> 出管温度</li>
+                                        <li class="table_in_time1 boder_bottom">COT时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right">COT温度</li>
+                                    </ul>
+                                </a></li>
+
+                                <li><a href="">
+                                      <span class="tub_num">
+                    7号管
+                </span>
+
+
+                                    <ul class="table_th">
+                                        <li class="table_in_time1 border_left boder_bottom">入管时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right"> 入管温度</li>
+                                        <li class="table_in_time1 boder_bottom"> 出管时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right"> 出管温度</li>
+                                        <li class="table_in_time1 boder_bottom">COT时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right">COT温度</li>
+                                    </ul>
+                                </a></li>
+                                <li><a href="">
+                                      <span class="tub_num">
+                    8号管
+                </span>
+
+
+                                    <ul class="table_th">
+                                        <li class="table_in_time1 border_left boder_bottom">入管时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right"> 入管温度</li>
+                                        <li class="table_in_time1 boder_bottom"> 出管时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right"> 出管温度</li>
+                                        <li class="table_in_time1 boder_bottom">COT时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right">COT温度</li>
+                                    </ul>
+                                </a></li>
+                                <li><a href="">
+                                      <span class="tub_num">
+                    9号管
+                </span>
+
+
+                                    <ul class="table_th">
+                                        <li class="table_in_time1 border_left boder_bottom">入管时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right"> 入管温度</li>
+                                        <li class="table_in_time1 boder_bottom"> 出管时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right"> 出管温度</li>
+                                        <li class="table_in_time1 boder_bottom">COT时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right">COT温度</li>
+                                    </ul>
+                                </a></li>
+                                <li><a href="">
+                                      <span class="tub_num">
+                    10号管
+                </span>
+
+
+                                    <ul class="table_th">
+                                        <li class="table_in_time1 border_left boder_bottom">入管时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right"> 入管温度</li>
+                                        <li class="table_in_time1 boder_bottom"> 出管时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right"> 出管温度</li>
+                                        <li class="table_in_time1 boder_bottom">COT时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right">COT温度</li>
+                                    </ul>
+                                </a></li>
+                                <li><a href="">
+                                      <span class="tub_num">
+                    11号管
+                </span>
+
+
+                                    <ul class="table_th">
+                                        <li class="table_in_time1 border_left boder_bottom">入管时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right"> 入管温度</li>
+                                        <li class="table_in_time1 boder_bottom"> 出管时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right"> 出管温度</li>
+                                        <li class="table_in_time1 boder_bottom">COT时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right">COT温度</li>
+                                    </ul>
+                                </a></li>
+                                <li><a href="">
+                                      <span class="tub_num">
+                    12号管
+                </span>
+
+
+                                    <ul class="table_th">
+                                        <li class="table_in_time1 border_left boder_bottom">入管时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right"> 入管温度</li>
+                                        <li class="table_in_time1 boder_bottom"> 出管时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right"> 出管温度</li>
+                                        <li class="table_in_time1 boder_bottom">COT时间</li>
+                                        <li class="table_in_temp1 boder_bottom border_right">COT温度</li>
+                                    </ul>
+                                </a></li>
+
+
+                            </ul>
+                            <!-- 第一组炉管历史温度的12根管-->
+                           <span id="tub_num1" style="overflow: auto;width:8900px;">
+                      </span>
+                    <span id="tub_num2" style="overflow: auto;width: 8800px;margin-left: 800px;margin-top: -600px">
+                      </span>
+                             <span id="tub_num3"
+                                   style="overflow: auto;width: 7000px;margin-left: 1600px;margin-top: -600px">
+                      </span>
+                            <span id="tub_num4"
+                                  style="overflow: auto;width: 6000px;margin-left: 2400px;margin-top: -600px">
+                      </span>
+                            <span id="tub_num5"
+                                  style="overflow: auto;width: 6000px;margin-left: 3200px;margin-top: -600px">
+                      </span>
+    <span id="tub_num6" style="overflow: auto;width: 5600px;margin-left: 4000px;margin-top: -600px">
+                      </span>
+<span id="tub_num7" style="overflow: auto;width: 3600px;margin-left: 4800px;margin-top: -600px">
+                      </span>
+<span id="tub_num8" style="overflow: auto;width: 4000px;margin-left: 5600px;margin-top: -600px">
+                      </span>
+
+  <span id="tub_num9" style="overflow: auto;width: 3000px;margin-left: 6400px;margin-top: -600px">
+                      </span>
+    <span id="tub_num10" style="overflow: auto;width: 2000px;margin-left: 7200px;margin-top: -600px">
+                      </span>
+<span id="tub_num11" style="overflow: auto;width: 1400px;margin-left: 8000px;margin-top: -600px">
+                      </span>
+<span id="tub_num12" style="overflow: auto;width: 800px;margin-left: 8800px;margin-top: -600px">
+                      </span>
+
+                            <!-- 第一组炉管历史温度的12根管-->
+
+                        </div>
+                    </div>
+                    <!-- 第二组炉管历史温度的12根管-->
+                    <div class="tab-pane row col-sm-12" id="tab2">
+                        k;l
+                    </div>
+                    <!--  第三组炉管历史温度的12根管-->
+                    <div class="tab-pane row col-sm-12" id="tab3">
+                        34
+                    </div>
+                    <!--第四组炉管历史温度的12根管-->
+                    <div class="tab-pane row col-sm-12" id="tab4">
+                        44444443
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery-2.2.1.min.js"></script>
+<!--<script src="js/inquiry.js"></script>-->
+<script src="js/select.js"></script>
+<script src="js/classie.js"></script>
+<script>
+    $(function () {
+        /*左边栏与右边栏可视化区域*/
+        $(".col-sm-1,.col-sm-11").css('height', $(window).height());
+        (function () {
+            [].slice.call(document.querySelectorAll('select.cs-select')).forEach(function (el) {
+                new SelectFx(el);
+            });
+        })();
+        $(".data").css({
+            height: $(window).height(),
+        })
+        $("#tab1,#tab2,#tab3,#tab4").css({
+            height: $(window).height()
+
+        })
+        /*表格高度*/
+        $(".table_all").css({
+            height: $(document).height() - 450 + 'px',
+        })
+
+    })
+
+</script>
+<script>
+    $(function () {
+        $("#btn1").click(function () {
+            var start_time = $("#start_time").val();
+            var end_time = $("#end_time").val();
+            var tub_num1 = document.getElementById("tub_num1");
+            var data2 = [];
+            $.ajax({
+                url: "http://47.92.49.44/schema/index.php/Home/User/search_temp?FN=5&&num=1",
+                type: "get",
+                jsonp: "callback",
+                dataType: "jsonp",
+                data: {
+                    start_time: start_time,
+                    end_time: end_time
+                },
+                success: function (data) {
+                    var length = data.data.table_in.length;
+                    /*第一个炉管表格*/
+                    var s = '<table class="border_left" ><tr>' +
+                            '</tr>';
+                    /*第二个炉管表格*/
+                    var s1 = '<table class="border_left" ><tr>' +
+                            '</tr>';
+                    /*第三个炉管表格*/
+                    var s2 = '<table class="border_left" ><tr>' +
+                            '</tr>';
+                    /*第四个炉管表格*/
+                    var s3 = '<table class="border_left" ><tr>' +
+                            '</tr>';
+                    /*第五个炉管表格*/
+                    var s4 = '<table class="border_left" ><tr>' +
+                            '</tr>';
+                    /*第六个炉管表格*/
+                    var s5 = '<table class="border_left" ><tr>' +
+                            '</tr>';
+                    /*第七个炉管表格*/
+                    var s6 = '<table class="border_left" ><tr>' +
+                            '</tr>';
+                    /*第八个炉管表格*/
+                    var s7 = '<table class="border_left" ><tr>' +
+                            '</tr>';
+                    /*第九个炉管表格*/
+                    var s8 = '<table class="border_left" ><tr>' +
+                            '</tr>';
+                    /*第十个炉管表格*/
+                    var s9 = '<table class="border_left" ><tr>' +
+                            '</tr>';
+                    /*第十一个炉管表格*/
+                    var s10 = '<table class="border_left" ><tr>' +
+                            '</tr>';
+                    /*第十二个炉管表格*/
+                    var s11 = '<table class="border_left" ><tr>' +
+                            '</tr>';
+
+                    for (var i = 0; i < length; i++) {
+                        if ((data.data.table_in[i].tn == 1) && (data.data.table_out[i].tn == 1)) {
+                            s += '<tr >' +
+                                        /*第一个炉管入管时间*/
+                                    '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_in[i].time + '</td>'
+                                        /*第一个炉管入管温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_in[i].temp + '</td>'
+                                        /*第一个炉管出管时间*/
+                                    + '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_out[i].time + '</td>'
+                                        /*第一个炉管出管温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_out[i].temp + '</td>'
+                                        /*第一个炉管COT时间*/
+                                    + '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_in[i].time + '</td>'
+                                        /*第一个炉管COT温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_in[i].temp + '</td>'
+                                    +
+                                    '</tr>';
+                        }
+
+                        if ((data.data.table_in[i].tn == 2) && (data.data.table_out[i].tn == 2)) {
+                            s1 += '<tr >' +
+                                        /*第二个炉管入管时间*/
+                                    '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_in[i].time + '</td>'
+                                        /*第二个炉管入管温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_in[i].temp + '</td>'
+                                        /*第二个炉管出管时间*/
+                                    + '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_out[i].time + '</td>'
+                                        /*第二个炉管出管温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_out[i].temp + '</td>'
+                                        /*第二个炉管COT时间*/
+                                    + '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_in[i].time + '</td>'
+                                        /*第二个炉管COT温度*/
+
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_in[i].temp + '</td>'
+                                    +
+                                    '</tr>';
+                        }
+
+                        if ((data.data.table_in[i].tn == 3) && (data.data.table_out[i].tn == 3)) {
+                            s2 += '<tr >' +
+                                        /*第3个炉管入管时间*/
+                                    '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_in[i].time + '</td>'
+                                        /*第3个炉管入管温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_in[i].temp + '</td>'
+                                        /*第一个炉管出管时间*/
+                                    + '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_out[i].time + '</td>'
+                                        /*第3个炉管出管温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_out[i].temp + '</td>'
+                                        /*第3个炉管COT时间*/
+                                    + '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_in[i].time + '</td>'
+                                        /*第3个炉管COT温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_in[i].temp + '</td>'
+                                    +
+                                    '</tr>';
+                        }
+                        if ((data.data.table_in[i].tn == 4) && (data.data.table_out[i].tn == 4)) {
+                            s3 += '<tr >' +
+                                        /*第4个炉管入管时间*/
+                                    '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_in[i].time + '</td>'
+                                        /*第4个炉管入管温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_in[i].temp + '</td>'
+                                        /*第4个炉管出管时间*/
+                                    + '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_out[i].time + '</td>'
+                                        /*第4个炉管出管温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_out[i].temp + '</td>'
+                                        /*第4个炉管COT时间*/
+                                    + '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_in[i].time + '</td>'
+                                        /*第4个炉管COT温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_in[i].temp + '</td>'
+                                    +
+                                    '</tr>';
+                        }
+                        if ((data.data.table_in[i].tn == 5) && (data.data.table_out[i].tn == 5)) {
+                            s4 += '<tr >' +
+                                        /*第5个炉管入管时间*/
+                                    '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_in[i].time + '</td>'
+                                        /*第5个炉管入管温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_in[i].temp + '</td>'
+                                        /*第5个炉管出管时间*/
+                                    + '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_out[i].time + '</td>'
+                                        /*第5个炉管出管温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_out[i].temp + '</td>'
+                                        /*第5个炉管COT时间*/
+                                    + '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_in[i].time + '</td>'
+                                        /*第5个炉管COT温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_in[i].temp + '</td>'
+                                    +
+                                    '</tr>';
+                        }
+                        if ((data.data.table_in[i].tn == 6) && (data.data.table_out[i].tn == 6)) {
+                            s5 += '<tr >' +
+                                        /*第6个炉管入管时间*/
+                                    '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_in[i].time + '</td>'
+                                        /*第6个炉管入管温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_in[i].temp + '</td>'
+                                        /*第6个炉管出管时间*/
+                                    + '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_out[i].time + '</td>'
+                                        /*第6个炉管出管温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_out[i].temp + '</td>'
+                                        /*第6个炉管COT时间*/
+                                    + '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_in[i].time + '</td>'
+                                        /*第6个炉管COT温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_in[i].temp + '</td>'
+                                    +
+                                    '</tr>';
+                        }
+                        if ((data.data.table_in[i].tn == 7) && (data.data.table_out[i].tn == 7)) {
+                            s6 += '<tr >' +
+                                        /*第7个炉管入管时间*/
+                                    '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_in[i].time + '</td>'
+                                        /*第7个炉管入管温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_in[i].temp + '</td>'
+                                        /*第7个炉管出管时间*/
+
+                                    + '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_out[i].time + '</td>'
+                                        /*第7个炉管出管温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_out[i].temp + '</td>'
+                                        /*第7个炉管COT时间*/
+                                    + '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_in[i].time + '</td>'
+                                        /*第7个炉管COT温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_in[i].temp + '</td>'
+                                    +
+                                    '</tr>';
+                        }
+
+                        if ((data.data.table_in[i].tn == 8) && (data.data.table_out[i].tn == 8)) {
+                            s7 += '<tr >' +
+                                        /*第8个炉管入管时间*/
+                                    '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_in[i].time + '</td>'
+                                        /*第8个炉管入管温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_in[i].temp + '</td>'
+                                        /*第8个炉管出管时间*/
+                                    + '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_out[i].time + '</td>'
+                                        /*第8个炉管出管温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_out[i].temp + '</td>'
+                                        /*第8个炉管COT时间*/
+                                    + '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_in[i].time + '</td>'
+                                        /*第8个炉管COT温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_in[i].temp + '</td>'
+                                    +
+                                    '</tr>';
+                        }
+                        if ((data.data.table_in[i].tn == 9) && (data.data.table_out[i].tn == 9)) {
+                            s8 += '<tr >' +
+                                        /*第9个炉管入管时间*/
+                                    '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_in[i].time + '</td>'
+                                        /*第9个炉管入管温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_in[i].temp + '</td>'
+                                        /*第9个炉管出管时间*/
+
+                                    + '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_out[i].time + '</td>'
+                                        /*第9个炉管出管温度*/
+
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_out[i].temp + '</td>'
+                                        /*第9个炉管COT时间*/
+                                    + '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_in[i].time + '</td>'
+                                        /*第9个炉管COT温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_in[i].temp + '</td>'
+                                    +
+                                    '</tr>';
+                        }
+
+                        if ((data.data.table_in[i].tn == 10) && (data.data.table_out[i].tn == 10)) {
+                            s9 += '<tr >' +
+                                        /*第10个炉管入管时间*/
+                                    '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_in[i].time + '</td>'
+                                        /*第10个炉管入管温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_in[i].temp + '</td>'
+                                        /*第10个炉管出管时间*/
+
+                                    + '<td class="boder_bottom table_in_time1" >' + data.data.table_out[i].time + '</td>'
+                                        /*第10个炉管出管温度*/
+
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_out[i].temp + '</td>'
+                                        /*第10个炉管COT时间*/
+                                    + '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_in[i].time + '</td>'
+                                        /*第10个炉管COT温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_in[i].temp + '</td>'
+                                    +
+                                    '</tr>';
+                        }
+
+                        if ((data.data.table_in[i].tn == 11) && (data.data.table_out[i].tn == 11)) {
+                            s10 += '<tr >' +
+                                        /*第11个炉管入管时间*/
+                                    '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_in[i].time + '</td>'
+                                        /*第11个炉管入管温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_in[i].temp + '</td>'
+                                        /*第11个炉管出管时间*/
+                                    + '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_out[i].time + '</td>'
+                                        /*第11个炉管出管温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_out[i].temp + '</td>'
+                                        /*第11个炉管COT时间*/
+                                    + '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_in[i].time + '</td>'
+                                        /*第11个炉管COT温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_in[i].temp + '</td>'
+                                    +
+                                    '</tr>';
+                        }
+                        if ((data.data.table_in[i].tn == 12) && (data.data.table_out[i].tn == 12)) {
+                            s11 += '<tr >' +
+                                        /*第12个炉管入管时间*/
+                                    '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_in[i].time + '</td>'
+                                        /*第12个炉管入管温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_in[i].temp + '</td>'
+                                        /*第12个炉管出管时间*/
+                                    + '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_out[i].time + '</td>'
+                                        /*第12个炉管出管温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_out[i].temp + '</td>'
+                                        /*第12个炉管COT时间*/
+                                    + '<td class="boder_bottom table_in_time1" >' +
+                                    data.data.table_in[i].time + '</td>'
+                                        /*第12个炉管COT温度*/
+                                    + '<td class="boder_bottom table_in_temp1 border_right" >' +
+                                    data.data.table_in[i].temp + '</td>'
+                                    +
+                                    '</tr>';
+                        }
+
+                    }
+                    s += '</table>'
+                    s1 += '</table>'
+                    s2 += '</table>'
+                    s3 += '</table>'
+                    s4 += '</table>'
+                    s5 += '</table>'
+                    s6 += '</table>'
+                    s7 += '</table>'
+                    s8 += '</table>'
+                    s9 += '</table>'
+                    s10 += '</table>'
+                    s11 += '</table>'
+
+
+                    $('#tub_num1').html(s)
+                    $('#tub_num2').html(s1)
+                    $('#tub_num3').html(s2)
+                    $('#tub_num4').html(s3)
+
+                    $('#tub_num5').html(s4)
+                    $('#tub_num6').html(s5)
+
+                    $('#tub_num7').html(s6)
+                    $('#tub_num8').html(s7)
+
+                    $('#tub_num9').html(s8)
+                    $('#tub_num10').html(s9)
+
+                    $('#tub_num11').html(s10)
+                    $('#tub_num12').html(s11)
+
+
+                },
+                error: function () {
+                    alert("error")
+                }
+
+            })
+
+        })
+    })
+</script>
+</body>
+</html>
